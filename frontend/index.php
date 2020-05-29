@@ -1,7 +1,12 @@
 <?php
 
 require_once "controladores/plantilla.controlador.php";
-//https://www.w3resource.com/php/statement/require_once.php
+require_once "controladores/productos.controlador.php";
 
-$plantilla = new ControladorPlantilla(); #instanciar controlador
-$plantilla -> plantilla();               #ejecutar metodo del controlador
+require_once "modelos/plantilla.modelo.php";
+require_once "modelos/productos.modelo.php";
+
+require_once "modelos/rutas.php";
+
+$plantilla = new ControladorPlantilla();
+$plantilla -> plantilla();
