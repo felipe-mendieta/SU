@@ -7,7 +7,7 @@ GLOBAL
 	padding:0px;
 	list-style: none;
 	text-decoration: none;
-	font-family: 'Ubunt', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 ul, ol{
@@ -19,15 +19,15 @@ a:visited, a:link, a:focus, a:hover, a:active{
 	text-decoration: none;
 }
 
-.barraSuperior{
+.barraSuperior{					/* Color de fondo de la barra */
 	background:black;
 }
 
-.barraSuperior a{
+.barraSuperior a{ 		/* Color de los enlaces dentro de la barra superior*/
 	color:white;
 }
 
-.backColor, .backColor a{
+.backColor, .backColor a{ /*Color de clases y los links que contengan backColor*/
 	background:#47bac1;
 	color:white;
 }

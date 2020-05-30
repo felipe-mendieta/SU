@@ -9,10 +9,14 @@ class ModeloPlantilla{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
 		$stmt -> execute();
+		
+		$resultado = $stmt -> fetch();//fetch solo trae la primera fila de los resultados
+		 
+		$stmt -> closeCursor();//cerramos la conexion a la base de datos
 
-		return $stmt -> fetch();
+		return $resultado;
 
-		$stmt -> close();
+		
 
 	}
 

@@ -3,29 +3,26 @@
 <head>
 
 	<meta charset="UTF-8">
-
+	<!-- Propiedad para que la pagina se pueda mostrar en varios dispositivos -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<meta name="title" content="Tienda Virtual">
-
+		<!-- Metadata para indexacion de buscadores -->
+	<meta name="title" content="Servicios Universitarios">
 	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam accusantium enim esse eos officiis sit officia">
-
-	<meta name="keyword" content="Lorem ipsum, dolor sit amet, consectetur, adipisicing, elit, Quisquam, accusantium, enim, esse">
+	<meta name="keyword" content="trueque,ucuenca, tienda, eventos">
 
 	<title>Tienda Virtual</title>
 
 	<?php
 
-		$servidor = Ruta::ctrRutaServidor();
-
 		$icono = ControladorPlantilla::ctrEstiloPlantilla();
 
-		echo '<link rel="icon" href="'.$servidor.$icono["icono"].'">';
+		echo '<link rel="icon" href="http://localhost/backend/'.$icono["icono"].'">';
 
 		/*=============================================
 		MANTENER LA RUTA FIJA DEL PROYECTO
 		=============================================*/
-		
+
 		$url = Ruta::ctrRuta();
 
 	?>
@@ -42,13 +39,11 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/cabezote.css">
 
-	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide.css">
 
+	<!--Scripts -->
 	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
-
-	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
 
 </head>
 
@@ -63,13 +58,13 @@ CABEZOTE
 include "modulos/cabezote.php";
 
 /*=============================================
-CONTENIDO DINÁMICO para categorias y subcategorias
+CONTENIDO DINÁMICO
 =============================================*/
 
 $rutas = array();
 $ruta = null;
 
-if(isset($_GET["ruta"])){
+if(isset($_GET["ruta"])){// evaluamos si se esta enviado una variable get o post
 
 	$rutas = explode("/", $_GET["ruta"]);
 
@@ -82,11 +77,13 @@ if(isset($_GET["ruta"])){
 
 	$rutaCategorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
 
-	if($rutas[0] == $rutaCategorias["ruta"]){
-
-		$ruta = $rutas[0];
-
-	}
+	if($rutaCategorias!=NULL){
+		if($rutas[0] == $rutaCategorias["ruta"]){
+	
+			$ruta = $rutas[0];
+	
+		}
+		}
 
 	/*=============================================
 	URL'S AMIGABLES DE SUBCATEGORÍAS
@@ -104,6 +101,7 @@ if(isset($_GET["ruta"])){
 
 	}
 
+
 	/*=============================================
 	LISTA BLANCA DE URL'S AMIGABLES
 	=============================================*/
@@ -118,17 +116,12 @@ if(isset($_GET["ruta"])){
 
 	}
 
-}else{
-
-	include "modulos/slide.php";
-
 }
 
 ?>
 
 <script src="<?php echo $url; ?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url; ?>vistas/js/plantilla.js"></script>
-<script src="<?php echo $url; ?>vistas/js/slide.js"></script>
 
 </body>
 </html>

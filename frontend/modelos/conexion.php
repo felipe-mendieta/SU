@@ -10,7 +10,7 @@ class Conexion{
 						array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 		                      PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 						);
-
+						//ultima linea es para el manejo de caracteres latinos
 		return $link;
 
 	}
