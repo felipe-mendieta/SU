@@ -10,7 +10,7 @@ class ControladorPlantilla{
 
 		include "vistas/plantilla.php";
 
-	}  
+	}
 
 	/*=============================================
 	TRAEMOS LOS ESTILOS DINÁMICOS DE LA PLANTILLA
@@ -18,7 +18,7 @@ class ControladorPlantilla{
 
 	public function ctrEstiloPlantilla(){
 
-		$tabla = "plantilla";// nombre de la tabla en la base de datos
+		$tabla = "plantilla";
 
 		$respuesta = ModeloPlantilla::mdlEstiloPlantilla($tabla);
 

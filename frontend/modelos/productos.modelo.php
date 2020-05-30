@@ -17,22 +17,22 @@ class ModeloProductos{
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 			$stmt -> execute();
-			$resultado = $stmt -> fetch();
-			
-		
+
+			return $stmt -> fetch();
+
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
 			$stmt -> execute();
-			$resultado = $stmt -> fetchAll();// trae todo los resultados
+
+			return $stmt -> fetchAll();
 
 		}
-
 		
-		$stmt -> closeCursor();
-		return $resultado;
-	
+		$stmt -> close();
+
+		$stmt = null;
 
 	}
 
@@ -47,18 +47,14 @@ class ModeloProductos{
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
 		$stmt -> execute();
-		$resultado = $stmt -> fetchAll();// trae todo los resultados
-		$stmt -> closeCursor();
 
-		return $resultado;
+		return $stmt -> fetchAll();
 
-		
+		$stmt -> close();
 
-	
+		$stmt = null;
 
-		
 	}
 
 
 }
-//deja abierto  la etiqueta php para que solo se permita escribir en lenguaje php
