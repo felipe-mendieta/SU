@@ -30,6 +30,10 @@
 
 	?>
 
+	<!--=====================================
+	PLUGINS DE CSS
+	======================================-->
+
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/bootstrap.min.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/font-awesome.min.css">
@@ -38,17 +42,29 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed" rel="stylesheet">
 
+	<!--=====================================
+	HOJAS DE ESTILO PERSONALIZADAS
+	======================================-->
+
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plantilla.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/cabezote.css">
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/slide.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/productos.css">
+
+	<!--=====================================
+	PLUGINS DE JAVASCRIPT
+	======================================-->
+
 	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
+
+	<script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
 
 </head>
 
@@ -63,11 +79,12 @@ CABEZOTE
 include "modulos/cabezote.php";
 
 /*=============================================
-CONTENIDO DINÁMICO para categorias y subcategorias
+CONTENIDO DINÁMICO
 =============================================*/
 
 $rutas = array();
 $ruta = null;
+$infoProducto = null;
 
 if(isset($_GET["ruta"])){
 
@@ -81,13 +98,15 @@ if(isset($_GET["ruta"])){
 	=============================================*/
 
 	$rutaCategorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+		
+	if($rutaCategorias!=null){
+	if($rutas[0] == $rutaCategorias["ruta"]){
 
-	if($rutaCategorias!=NULL){
-		if($rutas[0] == $rutaCategorias["ruta"]){
+		$ruta = $rutas[0];
+
+	}
+	}
 	
-			$ruta = $rutas[0];
-	
-		}
 
 	/*=============================================
 	URL'S AMIGABLES DE SUBCATEGORÍAS
@@ -106,12 +125,28 @@ if(isset($_GET["ruta"])){
 	}
 
 	/*=============================================
+	URL'S AMIGABLES DE PRODUCTOS
+	=============================================*/
+
+	$rutaProductos = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+	
+	if($rutas[0] == $rutaProductos["ruta"]){
+
+		$infoProducto = $rutas[0];
+
+	}
+
+	/*=============================================
 	LISTA BLANCA DE URL'S AMIGABLES
 	=============================================*/
 
-	if($ruta != null){
+	if($ruta != null || $rutas[0] == "articulos-gratis" || $rutas[0] == "lo-mas-vendido" || $rutas[0] == "lo-mas-visto"){
 
 		include "modulos/productos.php";
+
+	}else if($infoProducto != null){
+
+		include "modulos/infoproducto.php";
 
 	}else{
 
@@ -123,9 +158,15 @@ if(isset($_GET["ruta"])){
 
 	include "modulos/slide.php";
 
+	include "modulos/destacados.php";
+
 }
 
 ?>
+
+<!--=====================================
+JAVASCRIPT PERSONALIZADO
+======================================-->
 
 <script src="<?php echo $url; ?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url; ?>vistas/js/plantilla.js"></script>

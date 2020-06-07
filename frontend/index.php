@@ -11,4 +11,4 @@ require_once "modelos/slide.modelo.php";
 require_once "modelos/rutas.php";
 
 $plantilla = new ControladorPlantilla();
-$plantilla -> plantilla();// ejecutramos el metodo plantilla del ControladorPlantilla 
+$plantilla -> plantilla();

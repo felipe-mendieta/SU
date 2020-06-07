@@ -115,7 +115,6 @@ function movimientoSlide(item){
 
 	interrumpirCiclo = true;
 
-	// add animmation a cada imagen que esta dentro del slide
 	$(imgProducto[item]).animate({"top":-10 +"%", "opacity": 0},100)
 	$(imgProducto[item]).animate({"top":30 +"px", "opacity": 1},600)
 
@@ -133,7 +132,7 @@ function movimientoSlide(item){
 }
 
 /*=============================================
-INTERVALO/ Tiempo de espera entre slides
+INTERVALO
 =============================================*/
 
 setInterval(function(){
@@ -148,7 +147,7 @@ setInterval(function(){
 
 	}else{
 
-		if(!detenerIntervalo){// no avanzar diapositivas si el mouse esta encima, sino avanzar normalmente
+		if(!detenerIntervalo){
 
 			avanzar();
 
@@ -156,14 +155,14 @@ setInterval(function(){
 
 	}
 
-},3000) /*3 segundos*/
+},3000)
 
 /*=============================================
 APARECER FLECHAS
 =============================================*/
 
 $("#slide").mouseover(function(){
-	// Muestra las fechas cuando el mouse esta sobre el slider
+
 	$("#slide #retroceder").css({"opacity":1})
 	$("#slide #avanzar").css({"opacity":1})
 
@@ -173,12 +172,11 @@ $("#slide").mouseover(function(){
 
 
 $("#slide").mouseout(function(){
-	// Oculta las fechas cuando el mouse sale del slider
+
 	$("#slide #retroceder").css({"opacity":0})
 	$("#slide #avanzar").css({"opacity":0})
 
-	detenerIntervalo = false;// si estoy con el mouse encima del slide la animacion se detiene
-	// Es decir se paran de pasar las diapositivas
+	detenerIntervalo = false;
 
 })
 
@@ -189,9 +187,9 @@ ESCONDER SLIDE
 $("#btnSlide").click(function(){
 
 	if(!toogle){
-		//toogle es el estado de si esta oculto o no
+
 		toogle = true;
-		// slideUp Se esconde hacia arriba
+
 		$("#slide").slideUp("fast");
 
 		$("#btnSlide").html('<i class="fa fa-angle-down"></i>')
@@ -199,7 +197,7 @@ $("#btnSlide").click(function(){
 	}else{
 
 		toogle = false;
-		// slideDown Muestra hacia abajo
+
 		$("#slide").slideDown("fast");
 
 		$("#btnSlide").html('<i class="fa fa-angle-up"></i>')
