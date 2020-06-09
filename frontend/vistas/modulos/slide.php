@@ -32,8 +32,6 @@ SLIDESHOW
 
 							<div class="slideOpciones '.$value["tipoSlide"].'">';
 
-							//Comprueba si la imagen contiene datos
-							//corrige el error de la linea negra de firefox
 							if($value["imgProducto"] != ""){
 								
 								echo '<img class="imgProducto" src="'.$servidor.$value["imgProducto"].'" style="top:'.$estiloImgProducto["top"].'; right:'.$estiloImgProducto["right"].'; width:'.$estiloImgProducto["width"].'; left:'.$estiloImgProducto["left"].'">';
@@ -95,8 +93,6 @@ SLIDESHOW
 
 </div>
 
-
-<!-- Boton para ocultar el slider -->
 <center>
 	
 	<button id="btnSlide" class="backColor">

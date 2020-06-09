@@ -139,8 +139,7 @@ FLECHAS
 /*=============================================
 PAGINACIÓN
 =============================================*/
-/*Se modifica la paginación del slider 
-para la correcta visualizacion en dispositivos moviles*/
+
 #slide #paginacion{
 	position: absolute;
 	width:100%;
@@ -286,12 +285,10 @@ ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos en 768px)
 
 }
 
-
 /*=============================================
 MOVIL (XS revisamos en 320px)
 =============================================*/
-/*Se modifica la paginación del slider 
-para la correcta visualizacion en dispositivos moviles*/
+
 @media (max-width:767px){
 
 	#slide #retroceder, #slide #avanzar{
