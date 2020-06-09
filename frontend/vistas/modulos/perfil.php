@@ -73,6 +73,10 @@ SECCIÓN PERFIL
 		 	 	<a href="<?php echo $url; ?>ofertas">
 		 	 	<i class="fa fa-star"></i>	VER OFERTAS</a>
 	  		</li>
+			 <li>				
+				 <a data-toggle="tab" href="#publicar">
+		 	 	<i class="fa fa-plus"></i>	PUBLICAR</a>
+	  		</li>
 		
 		</ul>
 
@@ -709,14 +713,166 @@ SECCIÓN PERFIL
 						?>	
 
 				</div>
+				
 
 		  	</div>
+<!--=====================================
+			PESTAÑA publicar
+			======================================-->
+		  	
+			<div id="publicar" class="tab-pane fade">
+		    	
+				<!--comienzo-->
+				<div class="row">
+					
+					<form method="post" enctype="multipart/form-data">
+					
+						<div class="col-md-3 col-sm-4 col-xs-12 text-center">
+							
+							<br>
 
+							<figure id="imgPerfil">
+								
+							<?php
+
+							echo '<input type="hidden" value="'.$_SESSION["id"].'" id="idUsuario" name="idUsuario">
+							      <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">
+							      <input type="hidden" value="'.$_SESSION["foto"].'" name="fotoUsuario" id="fotoUsuario">
+							      <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">';
+
+
+							if($_SESSION["modo"] == "directo"){
+
+								if($_SESSION["foto"] != ""){
+
+									echo '<img src="'.$url.$_SESSION["foto"].'" class="img-thumbnail">';
+
+								}else{
+
+									echo '<img src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" class="img-thumbnail">';
+
+								}
+					
+
+							}else{
+
+								echo '<img src="'.$_SESSION["foto"].'" class="img-thumbnail">';
+							}		
+
+							?>
+
+							</figure>
+
+							<br>
+
+							<?php
+
+
+							?>
+
+							<div id="subirImagen">
+								
+								<input type="file" class="form-control" id="datosImagen" name="datosImagen">
+
+								<img class="previsualizar">
+
+							</div>
+
+						</div>	
+
+						<div class="col-md-9 col-sm-8 col-xs-12">
+
+						<br>
+							
+						<?php
+
+						if($_SESSION["modo"] != "directo"){
+
+							echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control"  value="'.$_SESSION["nombre"].'" readonly>
+
+									</div>
+
+									<br>
+
+									<label class="control-label text-muted text-uppercase">Correo electrónico:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control"  value="'.$_SESSION["email"].'" readonly>
+
+									</div>
+
+									<br>
+
+									<label class="control-label text-muted text-uppercase">Modo de registro en el sistema:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="fa fa-'.$_SESSION["modo"].'"></i></span>
+										<input type="text" class="form-control text-uppercase"  value="'.$_SESSION["modo"].'" readonly>
+
+									</div>
+
+									<br>';
+		
+
+						}else{
+
+							echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Nombre del producto:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control" id="editarNombre" name="editarNombre" ">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="editarEmail">Descripción:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+										<input type="text" class="form-control" id="editarEmail" name="editarEmail" ">
+
+									</div>
+
+								<br>
+								
+
+								<br>
+
+								<button type="submit" class="btn btn-default backColor btn-md pull-left">Cargar producto</button>';
+
+						}
+
+						?>
+
+						</div>				
+
+					</form>
+
+
+				</div>
+				<!--final-->>
+		  	</div>
 		</div>
 
 	</div>
 
 </div>
+
+
+
+
+		
 
 <!--=====================================
 VENTANA MODAL PARA COMENTARIOS
