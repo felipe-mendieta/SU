@@ -492,14 +492,14 @@ VENTANA MODAL PARA EL REGISTRO
 
 				?>
 				
-				<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">	
+				<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">	<!-- Boton registrar usuario -->
 
 			</form>
 
         </div>
 
         <div class="modal-footer">
-          
+          <!-- Boton redirige a iniciar sesion -->
 			¿Ya tienes una cuenta registrada? | <strong><a href="#modalIngreso" data-dismiss="modal" data-toggle="modal">Ingresar</a></strong>
 
         </div>

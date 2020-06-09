@@ -40,19 +40,26 @@ class ControladorUsuarios{
 
 					$url = Ruta::ctrRuta();	
 
-					$mail = new PHPMailer;
+					$mail = new PHPMailer();
+					$mail->IsSMTP();
+					$mail->Mailer = "smtp";
 
-					$mail->CharSet = 'UTF-8';
+					$mail->SMTPDebug  = 1;  
+					$mail->SMTPAuth   = TRUE;
+					$mail->SMTPSecure = "tls";
+					$mail->Port       = 587;
+					$mail->Host       = "smtp.gmail.com";
+					$mail->Username   = "fmenrollments@gmail.com";
+					$mail->Password   = "c0c0dr1l0";
 
-					$mail->isMail();
-
-					$mail->setFrom('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
-
-					$mail->addReplyTo('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
-
-					$mail->Subject = "Por favor verifique su dirección de correo electrónico";
-
+					$mail->IsHTML(true);
 					$mail->addAddress($_POST["regEmail"]);
+					$mail->SetFrom("fmenrollments@gmail.com", "SU");
+					$mail->AddReplyTo("rfmenrollments@gmail", "reply-to-name");
+					$mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
+					$mail->Subject = "Verifica tu cuenta para inciar sesión.";
+
+					
 
 					$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 						
