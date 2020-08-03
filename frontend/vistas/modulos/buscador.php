@@ -119,6 +119,7 @@ LISTAR PRODUCTOS
 				$base = 0;
 				$tope = 12;
 				$modo = "DESC";
+				$_SESSION["ordenar"] = "DESC";
 
 			}
 
@@ -140,7 +141,11 @@ LISTAR PRODUCTOS
 
 			}
 
+			// var_dump($productos);
+
 			if(!$productos){
+
+				$estado = 0;
 
 				echo '<div class="col-xs-12 error404 text-center">
 
@@ -155,6 +160,10 @@ LISTAR PRODUCTOS
 				echo '<ul class="grid0">';
 
 					foreach ($productos as $key => $value) {
+
+					if($value["estado"] != 0){
+
+					$estado = 1;
 					
 					echo '<li class="col-md-3 col-sm-6 col-xs-12">
 
@@ -180,13 +189,17 @@ LISTAR PRODUCTOS
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
-										if($value["nuevo"] != 0){
+										$fecha = date('Y-m-d');
+										$fechaActual = strtotime('-30 day', strtotime($fecha));
+										$fechaNueva = date('Y-m-d', $fechaActual);
+
+										if($fechaNueva < $value["fecha"]){
 
 											echo '<span class="label label-warning fontSize">Nuevo</span> ';
 
 										}
 
-										if($value["oferta"] != 0){
+										if($value["oferta"] != 0 && $value["precio"] != 0){
 
 											echo '<span class="label label-warning fontSize">'.$value["descuentoOferta"].'% off</span>';
 
@@ -277,6 +290,23 @@ LISTAR PRODUCTOS
 							</div>
 
 						</li>';
+
+					}else{
+
+						$estado = 0;
+						
+					}
+				}
+
+				if($estado == 0){
+
+					echo '<div class="col-xs-12 error404 text-center">
+
+						 <h1><small>¡Oops!</small></h1>
+
+						 <h2>Aún no hay productos en esta sección</h2>
+
+						</div>';
 				}
 
 				echo '</ul>
@@ -285,129 +315,152 @@ LISTAR PRODUCTOS
 
 				foreach ($productos as $key => $value) {
 
-					echo '<li class="col-xs-12">
-					  
-				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-							   
-							<figure>
-						
-								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
+					if($value["estado"] != 0){
 
-								</a>
-
-							</figure>
-
-					  	</div>  	
-							  
-						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+						echo '<li class="col-xs-12">
+						  
+					  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+								   
+								<figure>
 							
-							<h1>
-
-								<small>
-
 									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>';
+										<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
-										if($value["nuevo"] != 0){
+									</a>
 
-											echo '<span class="label label-warning">Nuevo</span> ';
+								</figure>
 
-										}
+						  	</div>  	
+								  
+							<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+								
+								<h1>
 
-										if($value["oferta"] != 0){
+									<small>
 
-											echo '<span class="label label-warning">'.$value["descuentoOferta"].'% off</span>';
+										<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+											
+											'.$value["titulo"].'<br>';
 
-										}		
+											$fecha = date('Y-m-d');
+											$fechaActual = strtotime('-30 day', strtotime($fecha));
+											$fechaNueva = date('Y-m-d', $fechaActual);
 
-									echo '</a>
+											if($fechaNueva < $value["fecha"]){
 
-								</small>
+												echo '<span class="label label-warning">Nuevo</span> ';
 
-							</h1>
+											}
 
-							<p class="text-muted">'.$value["titular"].'</p>';
+											if($value["oferta"] != 0 && $value["precio"] != 0){
 
-							if($value["precio"] == 0){
+												echo '<span class="label label-warning">'.$value["descuentoOferta"].'% off</span>';
 
-								echo '<h2><small>GRATIS</small></h2>';
+											}		
 
-							}else{
+										echo '</a>
 
-								if($value["oferta"] != 0){
+									</small>
 
-									echo '<h2>
+								</h1>
 
-											<small>
-						
-												<strong class="oferta">USD $'.$value["precio"].'</strong>
+								<p class="text-muted">'.$value["titular"].'</p>';
 
-											</small>
+								if($value["precio"] == 0){
 
-											<small>$'.$value["precioOferta"].'</small>
-										
-										</h2>';
+									echo '<h2><small>GRATIS</small></h2>';
 
 								}else{
 
-									echo '<h2><small>USD $'.$value["precio"].'</small></h2>';
+									if($value["oferta"] != 0){
 
+										echo '<h2>
+
+												<small>
+							
+													<strong class="oferta">USD $'.$value["precio"].'</strong>
+
+												</small>
+
+												<small>$'.$value["precioOferta"].'</small>
+											
+											</h2>';
+
+									}else{
+
+										echo '<h2><small>USD $'.$value["precio"].'</small></h2>';
+
+									}
+									
 								}
-								
-							}
 
-							echo '<div class="btn-group pull-left enlaces">
-						  	
-						  		<button type="button" class="btn btn-default btn-xs deseos"  idProducto="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos">
+								echo '<div class="btn-group pull-left enlaces">
+							  	
+							  		<button type="button" class="btn btn-default btn-xs deseos"  idProducto="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos">
 
-						  			<i class="fa fa-heart" aria-hidden="true"></i>
+							  			<i class="fa fa-heart" aria-hidden="true"></i>
 
-						  		</button>';
+							  		</button>';
 
-						  		if($value["tipo"] == "virtual" && $value["precio"] != 0){
+							  		if($value["tipo"] == "virtual" && $value["precio"] != 0){
 
-										if($value["oferta"] != 0){
+											if($value["oferta"] != 0){
 
-											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precioOferta"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
+												echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precioOferta"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
 
-											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+												<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
-											</button>';
+												</button>';
 
-										}else{
+											}else{
 
-											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
+												echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
 
-											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+												<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
-											</button>';
+												</button>';
+
+											}
 
 										}
 
-									}
+							  		echo '<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 
-						  		echo '<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+								  		<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
 
-							  		<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+								  		<i class="fa fa-eye" aria-hidden="true"></i>
 
-							  		<i class="fa fa-eye" aria-hidden="true"></i>
+								  		</button>
 
-							  		</button>
+							  		</a>
+								
+								</div>
 
-						  		</a>
-							
 							</div>
 
-						</div>
+							<div class="col-xs-12"><hr></div>
 
-						<div class="col-xs-12"><hr></div>
+						</li>';
 
-					</li>';
+					}else{
+
+						$estado = 0;	
+					}
 
 				}
+
+				if($estado == 0){
+
+					echo '<div class="col-xs-12 error404 text-center">
+
+						 <h1><small>¡Oops!</small></h1>
+
+						 <h2>Aún no hay productos en esta sección</h2>
+
+						</div>';
+				}
+
 
 				echo '</ul>';
 			}
@@ -423,6 +476,8 @@ LISTAR PRODUCTOS
 			======================================-->
 			
 			<?php
+
+			if($estado != 0){
 
 				if(count($listaProductos) != 0){
 
@@ -549,6 +604,8 @@ LISTAR PRODUCTOS
 					}
 
 				}
+
+			}
 
 			?>
 

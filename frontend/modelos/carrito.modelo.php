@@ -55,7 +55,6 @@ class ModeloCarrito{
 		$tmt =null;
 	}
 
-
 	/*=============================================
 	VERIFICAR PRODUCTO COMPRADO
 	=============================================*/

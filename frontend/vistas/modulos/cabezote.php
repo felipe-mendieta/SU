@@ -332,7 +332,7 @@ HEADER
 					echo '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
 							
 							<h4>
-								<a href="'.$url.$value["ruta"].'" class="pixelCategorias">'.$value["categoria"].'</a>
+								<a href="'.$url.$value["ruta"].'" class="pixelCategorias" titulo="'.$value["categoria"].'">'.$value["categoria"].'</a>
 							</h4>
 							
 							<hr>
@@ -347,7 +347,7 @@ HEADER
 							
 							foreach ($subcategorias as $key => $value) {
 									
-									echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias">'.$value["subcategoria"].'</a></li>';
+									echo '<li><a href="'.$url.$value["ruta"].'" class="pixelSubCategorias" titulo="'.$value["subcategoria"].'">'.$value["subcategoria"].'</a></li>';
 								}	
 								
 							echo '</ul>
@@ -492,14 +492,14 @@ VENTANA MODAL PARA EL REGISTRO
 
 				?>
 				
-				<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">	<!-- Boton registrar usuario -->
+				<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">	
 
 			</form>
 
         </div>
 
         <div class="modal-footer">
-          <!-- Boton redirige a iniciar sesion -->
+          
 			¿Ya tienes una cuenta registrada? | <strong><a href="#modalIngreso" data-dismiss="modal" data-toggle="modal">Ingresar</a></strong>
 
         </div>

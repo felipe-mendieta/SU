@@ -649,7 +649,6 @@ $("#btnCheckout").click(function(){
 		$(".formEnvio").show();
 
 		$(".btnPagar").attr("tipo","fisico");
-	
 
 		$.ajax({
 			url:rutaOculta+"vistas/js/plugins/countries.json",
@@ -678,7 +677,7 @@ $("#btnCheckout").click(function(){
 		EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO
 		=============================================*/
 
-	/* 	$("#seleccionarPais").change(function(){
+		$("#seleccionarPais").change(function(){
 
 			$(".alert").remove();
 
@@ -720,7 +719,7 @@ $("#btnCheckout").click(function(){
 			sumaTotalCompra();
 			pagarConPayu();
 
-		}) */
+		})
 
 	}else{
 
@@ -788,7 +787,7 @@ $("input[name='pago']").change(function(){
 FUNCIÓN PARA EL CAMBIO DE DIVISA
 =============================================*/
 
-/* function divisas(metodoPago){
+function divisas(metodoPago){
 
 	$("#cambiarDivisa").html("");
 
@@ -814,7 +813,7 @@ FUNCIÓN PARA EL CAMBIO DE DIVISA
 
 	}
 
-} */
+}
 
 /*=============================================
 /*=============================================
@@ -935,7 +934,7 @@ BOTÓN PAGAR PAYPAL
 
 $(".btnPagar").click(function(){
 
-/* 	var tipo = $(this).attr("tipo");
+	var tipo = $(this).attr("tipo");
 
 	if(tipo == "fisico" && $("#seleccionarPais").val() == ""){
 
@@ -997,7 +996,7 @@ $(".btnPagar").click(function(){
          }
 
 	})
- */
+
 })
 
 /*=============================================
@@ -1009,132 +1008,132 @@ BOTÓN PAGAR PAYU
 =============================================*/
 
 function pagarConPayu(){
-//  
-// 	if($("#seleccionarPais").val() == ""){
 
-// 		$(".formPayu").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
+	if($("#seleccionarPais").val() == ""){
+
+		$(".formPayu").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
 		
-// 		$(".formPayu input[name='Submit']").attr("type","button");
+		$(".formPayu input[name='Submit']").attr("type","button");
 		
-// 		return;
+		return;
 
-// 	}
+	}
 
-// 	var divisa = $("#cambiarDivisa").val();
-// 	var total = $(".valorTotalCompra").html();
-// 	var impuesto = $(".valorTotalImpuesto").html();
-// 	var envio = $(".valorTotalEnvio").html();
-// 	var subtotal = $(".valorSubtotal").html();
-// 	var titulo = $(".valorTitulo");
-// 	var cantidad = $(".valorCantidad");
-// 	var valorItem = $(".valorItem");
-// 	var idProducto = $('.cuerpoCarrito button, .comprarAhora button');
+	var divisa = $("#cambiarDivisa").val();
+	var total = $(".valorTotalCompra").html();
+	var impuesto = $(".valorTotalImpuesto").html();
+	var envio = $(".valorTotalEnvio").html();
+	var subtotal = $(".valorSubtotal").html();
+	var titulo = $(".valorTitulo");
+	var cantidad = $(".valorCantidad");
+	var valorItem = $(".valorItem");
+	var idProducto = $('.cuerpoCarrito button, .comprarAhora button');
 
-// 	var tituloArray = [];
-// 	var cantidadArray = [];
-// 	var idProductoArray = [];
-// 	var valorItemArray = [];
+	var tituloArray = [];
+	var cantidadArray = [];
+	var idProductoArray = [];
+	var valorItemArray = [];
 
-// 	for(var i = 0; i < titulo.length; i++){
+	for(var i = 0; i < titulo.length; i++){
 
-// 		tituloArray[i] = $(titulo[i]).html();
-// 		cantidadArray[i] = $(cantidad[i]).html();
-// 		idProductoArray[i] = $(idProducto[i]).attr("idProducto");
-// 		valorItemArray[i] = $(valorItem[i]).html();
+		tituloArray[i] = $(titulo[i]).html();
+		cantidadArray[i] = $(cantidad[i]).html();
+		idProductoArray[i] = $(idProducto[i]).attr("idProducto");
+		valorItemArray[i] = $(valorItem[i]).html();
 
-// 	}
+	}
 
-// 	var valorItemString = valorItemArray.toString();
-// 	var pago = valorItemString.replace(",","-");
+	var valorItemString = valorItemArray.toString();
+	var pago = valorItemString.replace(",","-");
 
-// 	var datos = new FormData();
-// 	datos.append("metodoPago", "payu");
-// 	datos.append("cantidadArray",cantidadArray);
-// 	datos.append("valorItemArray",valorItemArray);
-// 	datos.append("idProductoArray",idProductoArray);
-// 	datos.append("divisaPayu", divisa);
+	var datos = new FormData();
+	datos.append("metodoPago", "payu");
+	datos.append("cantidadArray",cantidadArray);
+	datos.append("valorItemArray",valorItemArray);
+	datos.append("idProductoArray",idProductoArray);
+	datos.append("divisaPayu", divisa);
 
-// 	if(hex_md5(total) == localStorage.getItem("total")){
+	if(hex_md5(total) == localStorage.getItem("total")){
 
-// 		$.ajax({
-// 	      url:rutaOculta+"ajax/carrito.ajax.php",
-// 	      method:"POST",
-// 	      data: datos,
-// 	      cache: false,
-// 	      contentType: false,
-// 	      processData: false,
-// 	      success:function(respuesta){
+		$.ajax({
+	      url:rutaOculta+"ajax/carrito.ajax.php",
+	      method:"POST",
+	      data: datos,
+	      cache: false,
+	      contentType: false,
+	      processData: false,
+	      success:function(respuesta){
 	          
-// 	          var merchantId = JSON.parse(respuesta).merchantIdPayu;
-// 	          var accountId = JSON.parse(respuesta).accountIdPayu;
-// 	          var apiKey = JSON.parse(respuesta).apiKeyPayu;
-// 	          var modo = JSON.parse(respuesta).modoPayu;
-// 	          var description = tituloArray.toString();
-// 	          var referenceCode = (Number(Math.ceil(Math.random()*1000000))+Number(total).toFixed());
-// 	          var productosToString = idProductoArray.toString();
-// 	          var productos = productosToString.replace(/,/g, "-");
-// 	          var cantidadToString = cantidadArray.toString();
-// 	          var cantidad = cantidadToString.replace(/,/g, "-");
-// 	          var signature = hex_md5(apiKey+"~"+merchantId+"~"+referenceCode+"~"+total+"~"+divisa);
+	          var merchantId = JSON.parse(respuesta).merchantIdPayu;
+	          var accountId = JSON.parse(respuesta).accountIdPayu;
+	          var apiKey = JSON.parse(respuesta).apiKeyPayu;
+	          var modo = JSON.parse(respuesta).modoPayu;
+	          var description = tituloArray.toString();
+	          var referenceCode = (Number(Math.ceil(Math.random()*1000000))+Number(total).toFixed());
+	          var productosToString = idProductoArray.toString();
+	          var productos = productosToString.replace(/,/g, "-");
+	          var cantidadToString = cantidadArray.toString();
+	          var cantidad = cantidadToString.replace(/,/g, "-");
+	          var signature = hex_md5(apiKey+"~"+merchantId+"~"+referenceCode+"~"+total+"~"+divisa);
 	       
 
-// 	          if(divisa == "COP"){
+	          if(divisa == "COP"){
 
-// 	          	var taxReturnBase = (total - impuesto).toFixed(2)
+	          	var taxReturnBase = (total - impuesto).toFixed(2)
 
-// 	          }else{
+	          }else{
 
-// 	          	var taxReturnBase = 0;
+	          	var taxReturnBase = 0;
 
-// 	          }        
+	          }        
 
-// 	          if(modo == "sandbox"){
+	          if(modo == "sandbox"){
 
-// 	            var url = "https://sandbox.gateway.payulatam.com/ppp-web-gateway/";
-// 	            var test = 1;
+	            var url = "https://sandbox.gateway.payulatam.com/ppp-web-gateway/";
+	            var test = 1;
 
-// 	      	  }else{
+	      	  }else{
 
-// 	      	  	var url = "https://gateway.payulatam.com/ppp-web-gateway/";
-// 	      	  	var test = 0;
+	      	  	var url = "https://gateway.payulatam.com/ppp-web-gateway/";
+	      	  	var test = 0;
 
-// 	      	  }
+	      	  }
 
-// 	      	  if(envio != 0){
+	      	  if(envio != 0){
 
-// 	      	  	var tipoEnvio = "YES";
+	      	  	var tipoEnvio = "YES";
 	      	  
-// 	      	  }else{
+	      	  }else{
 
-// 	      	  	var tipoEnvio = "NO";
-// 	      	  }
+	      	  	var tipoEnvio = "NO";
+	      	  }
 
-// 	           $(".formPayu").attr("method","POST");
-// 	           $(".formPayu").attr("action",url);
-// 			   $(".formPayu input[name='merchantId']").attr("value", merchantId);
-// 			   $(".formPayu input[name='accountId']").attr("value", accountId);
-// 			   $(".formPayu input[name='description']").attr("value", description);
-// 			   $(".formPayu input[name='referenceCode']").attr("value", referenceCode);
-// 			   $(".formPayu input[name='amount']").attr("value", total);
-// 			   $(".formPayu input[name='tax']").attr("value", impuesto);
-// 			   $(".formPayu input[name='taxReturnBase']").attr("value", taxReturnBase);
-// 			   $(".formPayu input[name='shipmentValue']").attr("value", envio);
-// 			   $(".formPayu input[name='currency']").attr("value", divisa);
-// 			   $(".formPayu input[name='responseUrl']").attr("value", rutaOculta+"index.php?ruta=finalizar-compra&payu=true&productos="+productos+"&cantidad="+cantidad+"&pago="+pago);
-// 			   $(".formPayu input[name='declinedResponseUrl']").attr("value", rutaOculta+"carrito-de-compras");
-// 			   $(".formPayu input[name='displayShippingInformation']").attr("value", tipoEnvio);
-// 			   $(".formPayu input[name='test']").attr("value", test);
-// 			   $(".formPayu input[name='signature']").attr("value", signature);
+	           $(".formPayu").attr("method","POST");
+	           $(".formPayu").attr("action",url);
+			   $(".formPayu input[name='merchantId']").attr("value", merchantId);
+			   $(".formPayu input[name='accountId']").attr("value", accountId);
+			   $(".formPayu input[name='description']").attr("value", description);
+			   $(".formPayu input[name='referenceCode']").attr("value", referenceCode);
+			   $(".formPayu input[name='amount']").attr("value", total);
+			   $(".formPayu input[name='tax']").attr("value", impuesto);
+			   $(".formPayu input[name='taxReturnBase']").attr("value", taxReturnBase);
+			   $(".formPayu input[name='shipmentValue']").attr("value", envio);
+			   $(".formPayu input[name='currency']").attr("value", divisa);
+			   $(".formPayu input[name='responseUrl']").attr("value", rutaOculta+"index.php?ruta=finalizar-compra&payu=true&productos="+productos+"&cantidad="+cantidad+"&pago="+pago);
+			   $(".formPayu input[name='declinedResponseUrl']").attr("value", rutaOculta+"carrito-de-compras");
+			   $(".formPayu input[name='displayShippingInformation']").attr("value", tipoEnvio);
+			   $(".formPayu input[name='test']").attr("value", test);
+			   $(".formPayu input[name='signature']").attr("value", signature);
 
-// 			   /*=============================================
-// 				GENERADOR DE TARJETAS DE CRÉDITO
-// 				http://www.elfqrin.com/discard_credit_card_generator.php
-// 				=============================================*/
+			   /*=============================================
+				GENERADOR DE TARJETAS DE CRÉDITO
+				http://www.elfqrin.com/discard_credit_card_generator.php
+				=============================================*/
 
-// 	      }
+	      }
 
-// 	  })
-// 	}
+	  })
+	}
 }
 
 /*=============================================

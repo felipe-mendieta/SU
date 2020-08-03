@@ -12,9 +12,9 @@
 
 		$servidor = Ruta::ctrRutaServidor();
 
-		$icono = ControladorPlantilla::ctrEstiloPlantilla();
+		$plantilla = ControladorPlantilla::ctrEstiloPlantilla();
 
-		echo '<link rel="icon" href="'.$servidor.$icono["icono"].'">';
+		echo '<link rel="icon" href="'.$servidor.$plantilla["icono"].'">';
 
 		/*=============================================
 		MANTENER LA RUTA FIJA DEL PROYECTO
@@ -134,6 +134,8 @@
 
 	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/ofertas.css">
 
+	<link rel="stylesheet" href="<?php echo $url; ?>vistas/css/footer.css">
+
 	<!--=====================================
 	PLUGINS DE JAVASCRIPT
 	======================================-->
@@ -154,7 +156,17 @@
 
 	<script src="<?php echo $url; ?>vistas/js/plugins/dscountdown.min.js"></script>
 
+	<script src="<?php echo $url; ?>vistas/js/plugins/knob.jquery.js"></script>
+
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<!--=====================================
+	Pixel de Facebook
+	======================================-->
+
+	<?php echo $plantilla["pixelFacebook"]; ?>
+
+
 
 </head>
 
@@ -257,7 +269,12 @@ if(isset($_GET["ruta"])){
 
 	include "modulos/destacados.php";
 
+	include "modulos/visitas.php";
+
 }
+
+
+include "modulos/footer.php";
 
 ?>
 
@@ -275,31 +292,15 @@ JAVASCRIPT PERSONALIZADO
 <script src="<?php echo $url; ?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url; ?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url; ?>vistas/js/carrito-de-compras.js"></script>
+<script src="<?php echo $url; ?>vistas/js/visitas.js"></script>
 
 <!--=====================================
 https://developers.facebook.com/
 ======================================-->
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '307504983059062',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.10'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
+<?php echo $plantilla["apiFacebook"]; ?>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+<script>
 
   /*=============================================
 	COMPARTIR EN FACEBOOK
@@ -336,6 +337,14 @@ https://developers.facebook.com/
 	})
 
 </script>
+
+	<!--=====================================
+	GOOGLE ANALYTICS
+	======================================-->
+
+	<?php echo $plantilla["googleAnalytics"]; ?>
+
+
 
 </body>
 </html>

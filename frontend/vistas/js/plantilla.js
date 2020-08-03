@@ -131,6 +131,7 @@ if(isNaN(pagActual)){
 }
 
 
+
 /*=============================================
 OFERTAS
 =============================================*/
@@ -170,6 +171,47 @@ for(var i = 0; i < finOferta.length; i++){
 
 
 }
+
+/*=============================================
+EVENTOS PIXEL DE FACEBOOK
+=============================================*/
+
+$(".pixelCategorias").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Categoria '+titulo, {
+
+		title: titulo
+
+	})
+
+})
+
+$(".pixelSubCategorias").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Subcategoria '+titulo, {
+
+		title: titulo
+
+	})
+
+})
+
+
+$(".pixelOferta").click(function(){
+
+	var titulo = $(this).attr("titulo");
+
+	fbq('track', 'Oferta '+titulo, {
+
+		title: titulo
+
+	})
+
+})
 
 
 

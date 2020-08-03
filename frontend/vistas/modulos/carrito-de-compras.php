@@ -165,16 +165,16 @@ VENTANA MODAL PARA CHECKOUT
 
 				<?php
 
-				// $respuesta = ControladorCarrito::ctrMostrarTarifas();
+				$respuesta = ControladorCarrito::ctrMostrarTarifas();
 
-				// echo '<input type="hidden" id="tasaImpuesto" value="'.$respuesta["impuesto"].'">
-				// 	  <input type="hidden" id="envioNacional" value="'.$respuesta["envioNacional"].'">
-				//       <input type="hidden" id="envioInternacional" value="'.$respuesta["envioInternacional"].'">
-				//       <input type="hidden" id="tasaMinimaNal" value="'.$respuesta["tasaMinimaNal"].'">
-				//       <input type="hidden" id="tasaMinimaInt" value="'.$respuesta["tasaMinimaInt"].'">
-				//       <input type="hidden" id="tasaPais" value="'.$respuesta["pais"].'">
+				echo '<input type="hidden" id="tasaImpuesto" value="'.$respuesta["impuesto"].'">
+					  <input type="hidden" id="envioNacional" value="'.$respuesta["envioNacional"].'">
+				      <input type="hidden" id="envioInternacional" value="'.$respuesta["envioInternacional"].'">
+				      <input type="hidden" id="tasaMinimaNal" value="'.$respuesta["tasaMinimaNal"].'">
+				      <input type="hidden" id="tasaMinimaInt" value="'.$respuesta["tasaMinimaInt"].'">
+				      <input type="hidden" id="tasaPais" value="'.$respuesta["pais"].'">
 
-				// ';
+				';
 
 				?>
 				
@@ -216,7 +216,7 @@ VENTANA MODAL PARA CHECKOUT
 
 						</center>
 
-						<img src="<?php echo $url; ?>vistas/img/plantilla/payphone.jpg" class="img-thumbnail">
+						<img src="<?php echo $url; ?>vistas/img/plantilla/payu.jpg" class="img-thumbnail">
 
 					</figure>
 
@@ -280,7 +280,7 @@ VENTANA MODAL PARA CHECKOUT
 
 						 <div class="divisa">
 
-						 	<!-- <select class="form-control" id="cambiarDivisa" name="divisa"> -->
+						 	<select class="form-control" id="cambiarDivisa" name="divisa">
 						 		
 							
 
@@ -295,7 +295,7 @@ VENTANA MODAL PARA CHECKOUT
 					<div class="clearfix"></div>
 
 					<form class="formPayu" style="display:none">
-					 <!-- 
+					 
 						<input name="merchantId" type="hidden" value=""/>
 						<input name="accountId" type="hidden" value=""/>
 						<input name="description" type="hidden" value=""/>
@@ -312,7 +312,7 @@ VENTANA MODAL PARA CHECKOUT
 						<input name="displayShippingInformation" type="hidden" value=""/>
 						<input name="test" type="hidden" value="" />
 						<input name="signature" type="hidden" value=""/>
- -->
+
 					  <input name="Submit" class="btn btn-block btn-lg btn-default backColor" type="submit"  value="PAGAR" >
 					</form>
 					

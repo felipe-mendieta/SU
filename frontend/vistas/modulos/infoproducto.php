@@ -41,8 +41,10 @@ INFOPRODUCTOS
 				$item =  "ruta";
 				$valor = $rutas[0];
 				$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
-			
-				$multimedia = json_decode($infoproducto["multimedia"],true);	
+
+				$multimedia = json_decode($infoproducto["multimedia"],true);
+
+
 				/*=============================================
 				VISOR DE IMÁGENES
 				=============================================*/
@@ -54,10 +56,11 @@ INFOPRODUCTOS
 							<figure class="visor">';
 
 							if($multimedia != null){
-							
+
 								for($i = 0; $i < count($multimedia); $i ++){
-									
+
 									echo '<img id="lupa'.($i+1).'" class="img-thumbnail" src="'.$servidor.$multimedia[$i]["foto"].'">';
+
 								}								
 
 								echo '</figure>
@@ -75,7 +78,6 @@ INFOPRODUCTOS
 								}
 
 							}		
-							    		
 							    						 
 							  echo '</ul>
 
@@ -185,6 +187,7 @@ INFOPRODUCTOS
 
 						<p class="tituloCarritoCompra text-left">'.$infoproducto["titulo"].'</p>';
 
+
 						if($infoproducto["oferta"] == 0){
 
 							echo'<input class="cantidadItem" value="1" tipo="'.$infoproducto["tipo"].'" precio="'.$infoproducto["precio"].'" idProducto="'.$infoproducto["id"].'">
@@ -226,7 +229,11 @@ INFOPRODUCTOS
 					
 					if($infoproducto["oferta"] == 0){
 
-						if($infoproducto["nuevo"] == 0){
+						$fecha = date('Y-m-d');
+						$fechaActual = strtotime('-30 day', strtotime($fecha));
+						$fechaNueva = date('Y-m-d', $fechaActual);
+
+						if($fechaNueva > $infoproducto["fecha"]){
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
 
@@ -248,34 +255,45 @@ INFOPRODUCTOS
 
 					}else{
 
-						if($infoproducto["nuevo"] == 0){
+						$fecha = date('Y-m-d');
+						$fechaActual = strtotime('-30 day', strtotime($fecha));
+						$fechaNueva = date('Y-m-d', $fechaActual);
+
+						if($fechaNueva > $infoproducto["fecha"]){
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
 
-							<br>
+							<br>';
 
-							<small>
-						
-								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span>
+							if($infoproducto["precio"] != 0){
 
-							</small>
+								echo '<small>
 							
-							</h1>';
+									<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span>
+
+								</small>';
+
+							}
+							
+							echo '</h1>';
 
 						}else{
 
 							echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
 
-							<br>
+							<br>';
 
-							<small>
-								<span class="label label-warning">Nuevo</span> 
-								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span> 
+							if($infoproducto["precio"] != 0){
 
+								echo '<small>
+									<span class="label label-warning">Nuevo</span> 
+									<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% off</span> 
 
-							</small>
+								</small>';
+
+							}
 							
-							</h1>';
+							echo '</h1>';
 
 						}
 					}
@@ -697,7 +715,7 @@ INFOPRODUCTOS
 								}
 
 
-									echo 'ADICIONAR AL CARRITO  
+									echo 'ADICIONAR AL CARRITO 
 
 									<i class="fa fa-shopping-cart"></i>
 
@@ -1127,8 +1145,10 @@ ARTÏCULOS RELACIONADOS
 				echo '<ul class="grid0">';
 
 				foreach ($relacionados as $key => $value) {
+
+				if($value["estado"] != 0){
 				
-				echo '<li class="col-md-3 col-sm-6 col-xs-12">
+					echo '<li class="col-md-3 col-sm-6 col-xs-12">
 
 						<figure>
 							
@@ -1140,6 +1160,8 @@ ARTÏCULOS RELACIONADOS
 
 						</figure>
 
+						'.$value["id"].'
+
 						<h4>
 				
 							<small>
@@ -1150,13 +1172,17 @@ ARTÏCULOS RELACIONADOS
 
 									<span style="color:rgba(0,0,0,0)">-</span>';
 
-									if($value["nuevo"] != 0){
+									$fecha = date('Y-m-d');
+									$fechaActual = strtotime('-30 day', strtotime($fecha));
+									$fechaNueva = date('Y-m-d', $fechaActual);
+
+									if($fechaNueva < $value["fecha"]){
 
 										echo '<span class="label label-warning fontSize">Nuevo</span> ';
 
 									}
 
-									if($value["oferta"] != 0){
+									if($value["oferta"] != 0 && $value["precio"] != 0){
 
 										echo '<span class="label label-warning fontSize">'.$value["descuentoOferta"].'% off</span>';
 
@@ -1247,7 +1273,9 @@ ARTÏCULOS RELACIONADOS
 						</div>
 
 					</li>';
+
 				}
+			}
 
 			echo '</ul>';
 
