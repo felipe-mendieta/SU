@@ -395,7 +395,7 @@ class ControladorUsuarios{
 					$mail->addAddress($_POST["regEmail"]);
 					$mail->SetFrom("serviciosu30@gmail.com", "SU");
 					$mail->AddReplyTo("serviciosu30@gmail.com", "reply-to-name");
-					$mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
+					//$mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
 					$mail->Subject = "Verifica tu cuenta para inciar sesión.";
 
 						$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
