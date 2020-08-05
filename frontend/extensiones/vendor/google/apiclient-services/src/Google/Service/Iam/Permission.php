@@ -17,13 +17,23 @@
 
 class Google_Service_Iam_Permission extends Google_Model
 {
+  public $apiDisabled;
   public $customRolesSupportLevel;
   public $description;
   public $name;
   public $onlyInPredefinedRoles;
+  public $primaryPermission;
   public $stage;
   public $title;
 
+  public function setApiDisabled($apiDisabled)
+  {
+    $this->apiDisabled = $apiDisabled;
+  }
+  public function getApiDisabled()
+  {
+    return $this->apiDisabled;
+  }
   public function setCustomRolesSupportLevel($customRolesSupportLevel)
   {
     $this->customRolesSupportLevel = $customRolesSupportLevel;
@@ -55,6 +65,14 @@ class Google_Service_Iam_Permission extends Google_Model
   public function getOnlyInPredefinedRoles()
   {
     return $this->onlyInPredefinedRoles;
+  }
+  public function setPrimaryPermission($primaryPermission)
+  {
+    $this->primaryPermission = $primaryPermission;
+  }
+  public function getPrimaryPermission()
+  {
+    return $this->primaryPermission;
   }
   public function setStage($stage)
   {

@@ -22,17 +22,26 @@ class Google_Service_Compute_Disk extends Google_Collection
   public $description;
   protected $diskEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $diskEncryptionKeyDataType = '';
+  protected $guestOsFeaturesType = 'Google_Service_Compute_GuestOsFeature';
+  protected $guestOsFeaturesDataType = 'array';
   public $id;
   public $kind;
   public $labelFingerprint;
   public $labels;
   public $lastAttachTimestamp;
   public $lastDetachTimestamp;
+  public $licenseCodes;
   public $licenses;
   public $name;
   public $options;
+  public $physicalBlockSizeBytes;
+  public $region;
+  public $replicaZones;
+  public $resourcePolicies;
   public $selfLink;
   public $sizeGb;
+  public $sourceDisk;
+  public $sourceDiskId;
   public $sourceImage;
   protected $sourceImageEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $sourceImageEncryptionKeyDataType = '';
@@ -75,6 +84,20 @@ class Google_Service_Compute_Disk extends Google_Collection
   public function getDiskEncryptionKey()
   {
     return $this->diskEncryptionKey;
+  }
+  /**
+   * @param Google_Service_Compute_GuestOsFeature
+   */
+  public function setGuestOsFeatures($guestOsFeatures)
+  {
+    $this->guestOsFeatures = $guestOsFeatures;
+  }
+  /**
+   * @return Google_Service_Compute_GuestOsFeature
+   */
+  public function getGuestOsFeatures()
+  {
+    return $this->guestOsFeatures;
   }
   public function setId($id)
   {
@@ -124,6 +147,14 @@ class Google_Service_Compute_Disk extends Google_Collection
   {
     return $this->lastDetachTimestamp;
   }
+  public function setLicenseCodes($licenseCodes)
+  {
+    $this->licenseCodes = $licenseCodes;
+  }
+  public function getLicenseCodes()
+  {
+    return $this->licenseCodes;
+  }
   public function setLicenses($licenses)
   {
     $this->licenses = $licenses;
@@ -148,6 +179,38 @@ class Google_Service_Compute_Disk extends Google_Collection
   {
     return $this->options;
   }
+  public function setPhysicalBlockSizeBytes($physicalBlockSizeBytes)
+  {
+    $this->physicalBlockSizeBytes = $physicalBlockSizeBytes;
+  }
+  public function getPhysicalBlockSizeBytes()
+  {
+    return $this->physicalBlockSizeBytes;
+  }
+  public function setRegion($region)
+  {
+    $this->region = $region;
+  }
+  public function getRegion()
+  {
+    return $this->region;
+  }
+  public function setReplicaZones($replicaZones)
+  {
+    $this->replicaZones = $replicaZones;
+  }
+  public function getReplicaZones()
+  {
+    return $this->replicaZones;
+  }
+  public function setResourcePolicies($resourcePolicies)
+  {
+    $this->resourcePolicies = $resourcePolicies;
+  }
+  public function getResourcePolicies()
+  {
+    return $this->resourcePolicies;
+  }
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
@@ -163,6 +226,22 @@ class Google_Service_Compute_Disk extends Google_Collection
   public function getSizeGb()
   {
     return $this->sizeGb;
+  }
+  public function setSourceDisk($sourceDisk)
+  {
+    $this->sourceDisk = $sourceDisk;
+  }
+  public function getSourceDisk()
+  {
+    return $this->sourceDisk;
+  }
+  public function setSourceDiskId($sourceDiskId)
+  {
+    $this->sourceDiskId = $sourceDiskId;
+  }
+  public function getSourceDiskId()
+  {
+    return $this->sourceDiskId;
   }
   public function setSourceImage($sourceImage)
   {

@@ -20,6 +20,10 @@ class Google_Service_Dfareporting_VideoSettings extends Google_Model
   protected $companionSettingsType = 'Google_Service_Dfareporting_CompanionSetting';
   protected $companionSettingsDataType = '';
   public $kind;
+  public $obaEnabled;
+  protected $obaSettingsType = 'Google_Service_Dfareporting_ObaIcon';
+  protected $obaSettingsDataType = '';
+  public $orientation;
   protected $skippableSettingsType = 'Google_Service_Dfareporting_SkippableSetting';
   protected $skippableSettingsDataType = '';
   protected $transcodeSettingsType = 'Google_Service_Dfareporting_TranscodeSetting';
@@ -46,6 +50,36 @@ class Google_Service_Dfareporting_VideoSettings extends Google_Model
   public function getKind()
   {
     return $this->kind;
+  }
+  public function setObaEnabled($obaEnabled)
+  {
+    $this->obaEnabled = $obaEnabled;
+  }
+  public function getObaEnabled()
+  {
+    return $this->obaEnabled;
+  }
+  /**
+   * @param Google_Service_Dfareporting_ObaIcon
+   */
+  public function setObaSettings(Google_Service_Dfareporting_ObaIcon $obaSettings)
+  {
+    $this->obaSettings = $obaSettings;
+  }
+  /**
+   * @return Google_Service_Dfareporting_ObaIcon
+   */
+  public function getObaSettings()
+  {
+    return $this->obaSettings;
+  }
+  public function setOrientation($orientation)
+  {
+    $this->orientation = $orientation;
+  }
+  public function getOrientation()
+  {
+    return $this->orientation;
   }
   /**
    * @param Google_Service_Dfareporting_SkippableSetting

@@ -1,6 +1,6 @@
 {
     "require": {
         "google/apiclient": "2.0",
-        "paypal/rest-api-sdk-php": "*"
+        "paypal/rest-api-sdk-php": "1.10.0"
     }
 }

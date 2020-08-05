@@ -1,21 +1,6 @@
 PayPal PHP SDK release notes
 ============================
 
-1.12.0
------
-* Add `getToken` method to `Payment` class to retrieve EC token from approval URL.
-* Add TLSv1.2 to cipher list [#844](https://github.com/paypal/PayPal-PHP-SDK/pull/844).
-* Use restCall object for function that makes REST requests [#841](https://github.com/paypal/PayPal-PHP-SDK/pull/841).
-* Minor bugfixes [#766](https://github.com/paypal/PayPal-PHP-SDK/issues/766), [#798](https://github.com/paypal/PayPal-PHP-SDK/issues/798), [#845](https://github.com/paypal/PayPal-PHP-SDK/pull/845).
-* Updated samples.
-
-1.11.0
------
-* Update third party payment sample with PayPal payment.
-* Prevent error in SSL version check if curl is not available [#706](https://github.com/paypal/PayPal-PHP-SDK/pull/706).
-* Stop auto-generating PayPal-Request-Id header values and allow SDK users to optionally set the value [#747](https://github.com/paypal/PayPal-PHP-SDK/pull/747).
-* Remove automatic retries on failed requests [#747](https://github.com/paypal/PayPal-PHP-SDK/pull/747).
-
 1.10.0
 -----
 * Updated Payments APIs [#700](https://github.com/paypal/PayPal-PHP-SDK/pull/700).

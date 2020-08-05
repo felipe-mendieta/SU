@@ -38,22 +38,39 @@ class Google_Service_Testing extends Google_Service
   const CLOUD_PLATFORM_READ_ONLY =
       "https://www.googleapis.com/auth/cloud-platform.read-only";
 
+  public $applicationDetailService;
   public $projects_testMatrices;
   public $testEnvironmentCatalog;
   
   /**
    * Constructs the internal representation of the Testing service.
    *
-   * @param Google_Client $client
+   * @param Google_Client $client The client used to deliver requests.
+   * @param string $rootUrl The root URL used for requests to the service.
    */
-  public function __construct(Google_Client $client)
+  public function __construct(Google_Client $client, $rootUrl = null)
   {
     parent::__construct($client);
-    $this->rootUrl = 'https://testing.googleapis.com/';
+    $this->rootUrl = $rootUrl ?: 'https://testing.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'testing';
 
+    $this->applicationDetailService = new Google_Service_Testing_Resource_ApplicationDetailService(
+        $this,
+        $this->serviceName,
+        'applicationDetailService',
+        array(
+          'methods' => array(
+            'getApkDetails' => array(
+              'path' => 'v1/applicationDetailService/getApkDetails',
+              'httpMethod' => 'POST',
+              'parameters' => array(),
+            ),
+          )
+        )
+    );
     $this->projects_testMatrices = new Google_Service_Testing_Resource_ProjectsTestMatrices(
         $this,
         $this->serviceName,

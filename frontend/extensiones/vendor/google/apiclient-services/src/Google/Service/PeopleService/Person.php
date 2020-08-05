@@ -36,6 +36,8 @@ class Google_Service_PeopleService_Person extends Google_Collection
   public $etag;
   protected $eventsType = 'Google_Service_PeopleService_Event';
   protected $eventsDataType = 'array';
+  protected $fileAsesType = 'Google_Service_PeopleService_FileAs';
+  protected $fileAsesDataType = 'array';
   protected $gendersType = 'Google_Service_PeopleService_Gender';
   protected $gendersDataType = 'array';
   protected $imClientsType = 'Google_Service_PeopleService_ImClient';
@@ -69,6 +71,8 @@ class Google_Service_PeopleService_Person extends Google_Collection
   protected $residencesType = 'Google_Service_PeopleService_Residence';
   protected $residencesDataType = 'array';
   public $resourceName;
+  protected $sipAddressesType = 'Google_Service_PeopleService_SipAddress';
+  protected $sipAddressesDataType = 'array';
   protected $skillsType = 'Google_Service_PeopleService_Skill';
   protected $skillsDataType = 'array';
   protected $taglinesType = 'Google_Service_PeopleService_Tagline';
@@ -205,6 +209,20 @@ class Google_Service_PeopleService_Person extends Google_Collection
   public function getEvents()
   {
     return $this->events;
+  }
+  /**
+   * @param Google_Service_PeopleService_FileAs
+   */
+  public function setFileAses($fileAses)
+  {
+    $this->fileAses = $fileAses;
+  }
+  /**
+   * @return Google_Service_PeopleService_FileAs
+   */
+  public function getFileAses()
+  {
+    return $this->fileAses;
   }
   /**
    * @param Google_Service_PeopleService_Gender
@@ -437,6 +455,20 @@ class Google_Service_PeopleService_Person extends Google_Collection
   public function getResourceName()
   {
     return $this->resourceName;
+  }
+  /**
+   * @param Google_Service_PeopleService_SipAddress
+   */
+  public function setSipAddresses($sipAddresses)
+  {
+    $this->sipAddresses = $sipAddresses;
+  }
+  /**
+   * @return Google_Service_PeopleService_SipAddress
+   */
+  public function getSipAddresses()
+  {
+    return $this->sipAddresses;
   }
   /**
    * @param Google_Service_PeopleService_Skill
