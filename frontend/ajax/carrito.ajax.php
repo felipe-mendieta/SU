@@ -97,7 +97,7 @@ if(isset($_POST["divisa"])){
 
 		$verificarProductos = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
 
-		$divisa = file_get_contents("http://free.currconv.com/api/v7/convert?q=USD_".$_POST["divisa"]."&compact=ultra&apiKey=a01ebaf9a1c69eb4ff79");
+		$divisa = "1";
 
 		$jsonDivisa = json_decode($divisa, true);
 

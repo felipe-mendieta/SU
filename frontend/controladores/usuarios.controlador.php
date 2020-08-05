@@ -379,7 +379,7 @@ class ControladorUsuarios{
 
 						$url = Ruta::ctrRuta();	
 
-						$mail = new PHPMailer();
+					$mail = new PHPMailer();
 					$mail->IsSMTP();
 					$mail->Mailer = "smtp";
 
