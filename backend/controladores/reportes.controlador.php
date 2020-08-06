@@ -50,7 +50,7 @@ class ControladorReportes{
 							<td style='font-weight:bold; border:1px solid #eee;'>MÉTODO</td>
 							<td style='font-weight:bold; border:1px solid #eee;'>EMAIL</td>		
 							<td style='font-weight:bold; border:1px solid #eee;'>DIRECCIÓN</td>		
-							<td style='font-weight:bold; border:1px solid #eee;'>PAÍS</td	
+							<td style='font-weight:bold; border:1px solid #eee;'>PAÍS</td>	
 							<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
 
 						</tr>");
