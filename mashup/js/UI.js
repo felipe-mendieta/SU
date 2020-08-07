@@ -100,8 +100,9 @@ function evento() {
 
             const { temp, feels_like,humidity} = resultadosMain;
             document.getElementById("textoP").innerHTML =
-                `El clima actual en <b>${name}</b>:
-                <br><li><b>${temp}</b> farenheit <ul></li>
+                `Analiando clima de Cuenca <b>${name}</b>:
+                <br><ul>
+                <li><b>${temp}</b> farenheit </li>
                 <li>Se siente como <b>${feels_like}</b> farenheit </li>
                 <li>La humedad es: <b>${humidity}</b></li>
                 </ul>
