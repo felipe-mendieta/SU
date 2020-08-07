@@ -4,8 +4,7 @@
     <list default="true" id="b4bf1fe4-4d75-4cb6-98f4-b3482163d7d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mashup/css/mapa.css" beforeDir="false" afterPath="$PROJECT_DIR$/mashup/css/mapa.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mashup/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mashup/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mashup/js/UI.js" beforeDir="false" afterPath="$PROJECT_DIR$/mashup/js/UI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mashup/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596779650563</updated>
-      <workItem from="1596779651645" duration="26656000" />
+      <workItem from="1596779651645" duration="27457000" />
     </task>
     <servers />
   </component>
