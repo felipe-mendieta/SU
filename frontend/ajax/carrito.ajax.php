@@ -200,7 +200,6 @@ if(isset($_POST["metodoPago"]) && $_POST["metodoPago"] == "payu"){
 	$payu = new AjaxCarrito();
 	$payu -> ajaxTraerComercioPayu();
 
-
 }
 
 /*=============================================
