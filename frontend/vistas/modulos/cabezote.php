@@ -485,6 +485,14 @@ VENTANA MODAL PARA EL REGISTRO
 
 				</div>
 
+				<center>
+					
+					<div class="g-recaptcha" data-sitekey="6LfGKboZAAAAAEtTH8hQzYVf9XvZonM4ZAAqxKAz"></div>
+
+				</center>
+
+				<br>
+
 				<?php
 
 					$registro = new ControladorUsuarios();
@@ -591,6 +599,13 @@ VENTANA MODAL PARA EL INGRESO
 
 				</div>
 
+				<center>
+					
+					<div class="g-recaptcha" data-sitekey="6LfGKboZAAAAAEtTH8hQzYVf9XvZonM4ZAAqxKAz"></div>
+
+				</center>
+
+				<br>
 				
 
 				<?php

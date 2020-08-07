@@ -160,6 +160,13 @@
 
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+	
+	<!--=====================================
+	CAPTCHA
+	======================================-->
+
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
 	<!--=====================================
 	Pixel de Facebook
 	======================================-->

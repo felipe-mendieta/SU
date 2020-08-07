@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-08-2020 a las 23:15:38
+-- Tiempo de generación: 07-08-2020 a las 04:16:49
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -46,7 +46,7 @@ CREATE TABLE `administradores` (
 INSERT INTO `administradores` (`id`, `nombre`, `email`, `foto`, `password`, `perfil`, `estado`, `fecha`) VALUES
 (6, 'Felipe Mendieta', 'felipe.mendieta98@ucuenca.edu.ec', 'vistas/img/perfiles/455.png', '$2a$07$asxx54ahjppf45sd87a5auEcb6YcjpXBNPZiq9lJZrviCujQFpR8W', 'administrador', 1, '2020-08-06 08:18:15'),
 (7, 'Davicho Pinos', 'alex.pinos@ucuenca.edu.ec', 'vistas/img/perfiles/637.png', '$2a$07$asxx54ahjppf45sd87a5auEcb6YcjpXBNPZiq9lJZrviCujQFpR8W', 'administrador', 1, '2020-08-06 08:15:38'),
-(8, 'Priscilla Cedillo', 'priscila.cedillo@ucuenca.edu.ec', 'vistas/img/perfiles/339.png', '$2a$07$asxx54ahjppf45sd87a5au7o42P/h1WU6ykKEZPBs5ctSnVvPNFve', 'editor', 1, '2020-08-06 08:23:30');
+(8, 'Priscilla Cedillo', 'priscila.cedillo@ucuenca.edu.ec', 'vistas/img/perfiles/339.png', '$2a$07$asxx54ahjppf45sd87a5au7o42P/h1WU6ykKEZPBs5ctSnVvPNFve', 'administrador', 1, '2020-08-07 03:13:37');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,11 @@ INSERT INTO `cabeceras` (`id`, `ruta`, `titulo`, `descripcion`, `palabrasClaves`
 (14, 'celulares', 'Celulares', 'Venta de celulares', 'celular', 'vistas/img/cabeceras/default/default.jpg', '2020-08-06 07:44:57'),
 (15, 'paseo-inicio-de-ciclo', 'Paseo Inicio de Ciclo', 'Comienza el ciclo disfrutando el mejor paseo por el comienzo de clases. Conoce gente nueva, te esperamos.', 'paseo,bienbebida', 'vistas/img/cabeceras/default/default.jpg', '2020-08-06 08:06:42'),
 (16, 'fiesta-inicio-de-ciclo', 'Fiesta Inicio de Ciclo', 'Fiesta de inicio de ciclo, no te lo puedes perder. Te esperamos.', 'inicio,ciclo', 'vistas/img/cabeceras/default/default.jpg', '2020-08-06 08:46:46'),
-(17, 'calculo-de-varias-variables', 'Calculo de varias variables', 'Libro de ingeniería de intercambio.', 'libro', 'vistas/img/cabeceras/default/default.jpg', '2020-08-06 08:50:10');
+(17, 'calculo-de-varias-variables', 'Calculo de varias variables', 'Libro de ingeniería de intercambio.', 'libro', 'vistas/img/cabeceras/default/default.jpg', '2020-08-06 08:50:10'),
+(19, 'entradas-conferencia-magistral', 'Entradas conferencia magistral', 'Conferencia acerca de inteligencia artificial. ', 'conferencia', 'vistas/img/cabeceras/entradas-conferencia-magistral.jpg', '2020-08-07 03:28:47'),
+(20, 'entradas-evento-microsoft', 'Entradas evento microsoft', 'Reunion 13 años Microsoft Ucuenca', 'microsoft,comunidad', 'vistas/img/cabeceras/default/default.jpg', '2020-08-07 04:23:15'),
+(21, 'taller-manualidades', 'Taller manualidades', 'Taller de manualidades, instrumentos incluidos', 'manualidades,artes', 'vistas/img/cabeceras/default/default.jpg', '2020-08-07 04:26:01'),
+(22, 'taller-manualidades', 'Taller manualidades', 'Taller manualidades, facultad de artes. Instrumentos incluidos.', 'velas,artes,manualidades', 'vistas/img/cabeceras/default/default.jpg', '2020-08-07 04:27:42');
 
 -- --------------------------------------------------------
 
@@ -143,6 +147,13 @@ CREATE TABLE `comentarios` (
   `comentario` text COLLATE utf8_spanish_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `id_usuario`, `id_producto`, `calificacion`, `comentario`, `fecha`) VALUES
+(1, 8, 505, 0, '', '2020-08-07 01:08:15');
 
 -- --------------------------------------------------------
 
@@ -195,6 +206,13 @@ CREATE TABLE `compras` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `id_usuario`, `id_producto`, `envio`, `metodo`, `email`, `direccion`, `pais`, `cantidad`, `detalle`, `pago`, `fecha`) VALUES
+(1, 8, 505, 2, 'paypal', 'sb-7sif42825699@personal.example.com', '1 Main St, San Jose, CA, 95131', 'US', 1, 'Entradas conferencia magistral-Ninguna', '2', '2020-08-07 01:08:28');
+
 -- --------------------------------------------------------
 
 --
@@ -240,7 +258,7 @@ CREATE TABLE `notificaciones` (
 --
 
 INSERT INTO `notificaciones` (`id`, `nuevosUsuarios`, `nuevasVentas`, `nuevasVisitas`) VALUES
-(1, 0, 0, 0);
+(1, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -311,7 +329,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`, `estado`, `titulo`, `titular`, `descripcion`, `multimedia`, `detalles`, `precio`, `portada`, `vistas`, `ventas`, `vistasGratis`, `ventasGratis`, `ofertadoPorCategoria`, `ofertadoPorSubCategoria`, `oferta`, `precioOferta`, `descuentoOferta`, `imgOferta`, `finOferta`, `peso`, `entrega`, `fecha`) VALUES
-(503, 1, 23, 'fisico', 'fiesta-inicio-de-ciclo', 1, 'Fiesta Inicio de Ciclo', 'Fiesta de inicio de ciclo, no te lo puedes perder. Te esperamos....', 'Fiesta de inicio de ciclo, no te lo puedes perder. Te esperamos.', '[{\"foto\":\"vistas/img/multimedia/fiesta-inicio-de-ciclo/party.png\"}]', '{\"Talla\":[],\"Color\":[],\"Marca\":[]}', 10, 'vistas/img/productos/fiesta-inicio-de-ciclo.png', 1, 0, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 0, '2020-08-06 08:50:49');
+(503, 1, 23, 'fisico', 'fiesta-inicio-de-ciclo', 1, 'Fiesta Inicio de Ciclo', 'Fiesta de inicio de ciclo, no te lo puedes perder. Te esperamos....', 'Fiesta de inicio de ciclo, no te lo puedes perder. Te esperamos.', '[{\"foto\":\"vistas/img/multimedia/fiesta-inicio-de-ciclo/party.png\"}]', '{\"Talla\":[],\"Color\":[],\"Marca\":[]}', 10, 'vistas/img/productos/fiesta-inicio-de-ciclo.png', 4, 0, 0, 0, 0, 0, 0, 0, 0, '', '2020-08-18 00:00:00', 0, 0, '2020-08-07 01:09:19'),
+(505, 1, 25, 'fisico', 'entradas-conferencia-magistral', 1, 'Entradas conferencia magistral', 'Conferencia acerca de inteligencia artificial. ...', 'Conferencia acerca de inteligencia artificial. ', '[{\"foto\":\"vistas/img/multimedia/entradas-conferencia-magistral/inteligencia.jpeg\"},{\"foto\":\"vistas/img/multimedia/entradas-conferencia-magistral/conferencia.jpeg\"}]', '{\"Talla\":[],\"Color\":[],\"Marca\":[\"Ninguna\"]}', 2, 'vistas/img/productos/entradas-conferencia-magistral.jpg', 10, 1, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 0, '2020-08-07 01:09:26'),
+(508, 1, 25, 'fisico', 'taller-manualidades', 1, 'Taller manualidades', 'Taller manualidades, facultad de artes. Instrumentos incluidos....', 'Taller manualidades, facultad de artes. Instrumentos incluidos.', '[{\"foto\":\"vistas/img/multimedia/taller-manualidades/velas.jpeg\"},{\"foto\":\"vistas/img/multimedia/taller-manualidades/velasvar.jpeg\"}]', '{\"Talla\":[],\"Color\":[],\"Marca\":[]}', 5, 'vistas/img/productos/taller-manualidades.jpg', 3, 0, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 0, '2020-08-07 01:04:37');
 
 -- --------------------------------------------------------
 
@@ -412,9 +432,11 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `password`, `email`, `modo`, `foto`, `verificacion`, `emailEncriptado`, `fecha`) VALUES
 (16, 'FELIPE', '$2a$07$asxx54ahjppf45sd87a5auNv.eCseagOQB62cput5c6QTTJqjqz86', 'fmenrollments@gmail.com', 'directo', '', 0, 'f6593581ef73e04015c72de9963164db', '2020-08-05 04:48:19'),
-(17, 'dr david pinos', '$2a$07$asxx54ahjppf45sd87a5auNv.eCseagOQB62cput5c6QTTJqjqz86', 'alex.pinos@ucuenca.edu.ec', 'directo', '', 0, '996763cdcbc5ba16c9c00e2b36df2571', '2020-08-06 02:39:00'),
 (18, 'felipe mendieta', '$2a$07$asxx54ahjppf45sd87a5auNv.eCseagOQB62cput5c6QTTJqjqz86', 'felipe.mendieta98@ucuenca.edu.ec', 'directo', '', 0, '28498df5a1a198836639568843938d21', '2020-08-06 08:20:49'),
-(19, 'Felipe Mendieta', 'null', 'jfmendieta0219@gmail.com', 'facebook', 'http://graph.facebook.com/3353940577995959/picture?type=large', 0, 'null', '2020-08-06 03:07:01');
+(19, 'Felipe Mendieta', 'null', 'jfmendieta0219@gmail.com', 'facebook', 'http://graph.facebook.com/3353940577995959/picture?type=large', 0, 'null', '2020-08-06 03:07:01'),
+(20, 'ALEX DAVID PINOS PALACIOS', 'null', 'alex.pinos@ucuenca.edu.ec', 'google', 'https://lh3.googleusercontent.com/a-/AOh14Ggza8sNmdqXRujlsY-qbbkgZpvzV6crP6wGxhqq=s96-c', 0, 'null', '2020-08-07 01:01:58'),
+(21, 'fdsafklj', '$2a$07$asxx54ahjppf45sd87a5aub7LdtrTXnn.ZQdALsthndsluPeTbv.a', 'lalatorreslaloca@gmail.com', 'directo', '', 1, '7323f2c5c7c571d0db5fd0b7fe654e20', '2020-08-07 01:47:13'),
+(22, 'asdfdsf', '$2a$07$asxx54ahjppf45sd87a5auVUN29k0//dWkzLo4ias1ljMdjdKvDI.', 'asdfsd@gmail.com', 'directo', '', 1, '7ad9ae2984fb008ff725719deb91753a', '2020-08-07 01:48:17');
 
 -- --------------------------------------------------------
 
@@ -658,7 +680,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de la tabla `cabeceras`
 --
 ALTER TABLE `cabeceras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -670,7 +692,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -682,13 +704,13 @@ ALTER TABLE `comercio`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `deseos`
 --
 ALTER TABLE `deseos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -706,7 +728,7 @@ ALTER TABLE `plantilla`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=504;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=509;
 
 --
 -- AUTO_INCREMENT de la tabla `slide`
@@ -724,7 +746,7 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `visitaspaises`

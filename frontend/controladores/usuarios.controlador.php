@@ -10,6 +10,19 @@ class ControladorUsuarios{
 
 		if(isset($_POST["regUsuario"])){
 
+			if(isset($_POST["g-recaptcha-response"])){
+
+				$secret = "6LfGKboZAAAAAAW4bwuVyzcPgR9ZnUGVwIWjWd0j";
+				$response = $_POST["g-recaptcha-response"];
+				$remoteip = $_SERVER["REMOTE_ADDR"];	
+				$result = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
+
+				$array = json_decode($result,TRUE);
+				if($array["success"]){
+
+
+			
+
 			if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["regUsuario"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["regEmail"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["regPassword"])){
@@ -30,6 +43,9 @@ class ControladorUsuarios{
 				$tabla = "usuarios";
 
 				$respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+
+
+				
 
 				if($respuesta == "ok"){
 
@@ -179,7 +195,29 @@ class ControladorUsuarios{
 
 			}
 
+		}else{
+			echo '<script> 
+
+						swal({
+							  title: "¡ERROR!",
+							  text: "¡No se ha completado el captcha!",
+							  type:"error",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+						});
+
+				</script>';
 		}
+	}
+
+	}
 
 	}
 
@@ -254,6 +292,16 @@ class ControladorUsuarios{
 
 					}else{
 
+						if(isset($_POST["g-recaptcha-response"])){
+
+							$secret = "6LfGKboZAAAAAAW4bwuVyzcPgR9ZnUGVwIWjWd0j";
+							$response = $_POST["g-recaptcha-response"];
+							$remoteip = $_SERVER["REMOTE_ADDR"];	
+							$result = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
+
+							$array = json_decode($result,TRUE);
+							if($array["success"]){
+
 						$_SESSION["validarSesion"] = "ok";
 						$_SESSION["id"] = $respuesta["id"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
@@ -267,6 +315,9 @@ class ControladorUsuarios{
 							window.location = localStorage.getItem("rutaActual");
 
 						</script>';
+							}
+
+						}
 
 					}
 
